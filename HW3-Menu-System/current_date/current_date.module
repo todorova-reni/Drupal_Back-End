@@ -1,0 +1,75 @@
+<?php
+
+ /* 
+  * Implement hook_init()
+  */
+function current_date_init() {
+  $is_current_date_enabled = variable_get('enable_current_date', 0);
+  $is_enabled_for_anonymous = variable_get('show_for_anonymous', 0);
+  $message_type = variable_get('message_type',0);
+  
+  if(!$is_enabled_for_anonymous && user_is_logged_in() == false ){
+    $is_current_date_enabled = 0;
+  }    
+  else if($is_current_date_enabled == 1){
+    $date  = t('Today is ' . date('l, F d, Y'));
+    switch ($message_type){
+      case '0' : { $message_type = 'status'; break;}
+      case '1' : { $message_type = 'warning'; break;}
+      case '2' : { $message_type = 'error'; break;}
+    }
+    drupal_set_message($date,$message_type);  
+  }
+}
+
+/*
+ * Implement hook_menu()
+ */
+function current_date_menu(){
+  $items['admin/config/current-date'] = array(
+    'title' => t('Current Date Message'),
+    'description' => 'Show message with current date',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('current_date_from'),
+    'access arguments' => array('administer current date message'),
+    'file' => 'current_date.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['admin/config/current-date/settings'] = array(
+    'title' => t('Settings'),    
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+  );
+  
+  $items['admin/config/current-date/advanced'] = array(
+    'title' => t('Advanced Settings'),  
+    'description' => 'Show current date message for anonymous users.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('current_date_advanced_form'),
+    'access arguments' => array('administer current date message'),
+    'file' => 'current_date.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+  return $items;
+}
+
+/*
+ * Implements hook_permission()
+ */
+function current_date_permission(){
+  return array(
+    'administer current date message' => array(
+      'title' => t('Administer Current Date Message'),
+      'description' => t('Perform administration tasks for setting Current Date Message.'),      
+    ),
+  );
+}
+
+/*
+ * Implements hook_modulea_config() for test purpose.
+ */
+function current_date_modulea_config(){
+  return t('This text comes from module current_date.<br>');
+}
