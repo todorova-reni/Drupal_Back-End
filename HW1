@@ -1,5 +1,0 @@
-name = Current Date
-description = My very first module for current date message.
-core = 7.x
-package = Drupal Back-End
-configure = admin/config/current-date
