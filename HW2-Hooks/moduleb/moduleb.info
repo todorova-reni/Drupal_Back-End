@@ -1,0 +1,4 @@
+name = Module B
+description = Module B depends on module A
+core = 7.x
+package = Drupal Back-End

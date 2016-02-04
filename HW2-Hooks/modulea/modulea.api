@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Hooks provided by the Modulea module.
+ */
+
+/**
+ * @defgroup mobulea_api_hooks Moduleb API Hooks
+ * @{
+ * Functions to define and modify something.
+ *
+ * Functions to allow doing something.
+ *
+ * Here is a list of the hooks that are invoked during some operations:
+ * - Display some message:
+ *   - hook_modulea_config()
+ * @}
+ */
+
+/**
+ * @addtogroup hooks
+ * @{
+ */
+
+/**
+ * Display message.
+ *
+ * This hook has no params and return some message.
+ *
+ * @return
+ *   string
+ */
+function hook_modulea_config() {
+ return '';
+}

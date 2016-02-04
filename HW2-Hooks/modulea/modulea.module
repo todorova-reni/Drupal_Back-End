@@ -1,0 +1,50 @@
+<?php
+
+/*
+ * Define hook_config()
+ */
+function modulea_config(){
+  return '';
+}
+
+
+/*
+ * Implements hook_menu()
+ */
+function modulea_menu(){
+  $items['admin/config/content/modulea-config'] = array(
+    'title' => 'Module A Config Page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('modulea_admin_settings'),
+    'access arguments' => array('administer modulea'),
+    'file' => 'modulea.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/*
+ * Implements hook_help().
+ */
+function modulea_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/content/modulea-config':
+      return '<p><b>' . t('This module shows all modules that implements hook_modulea_config.') . '</b></p>';
+
+    case 'admin/help#modulea':
+      $output = '';
+      $output .= '<p>' . t('You must be admin to manage this module.') . '</p>';
+      return $output;
+  }
+}
+/*
+ * Implements hook_permission()
+ */
+function modulea_permission() {
+  return array(
+    'administer modulea' => array(
+      'title' => t('Administer my module'),
+      'description' => t('Perform administration tasks for my module.'),
+    ),
+  );
+}
