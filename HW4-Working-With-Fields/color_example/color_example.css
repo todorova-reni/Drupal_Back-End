@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 21, 2016, 8:40:52 PM
+    Author     : Reni
+*/
+
+/**
+ * @file
+ * CSS for Color Example.
+ */
+div.form-item table .form-type-textfield,
+div.form-item table .form-type-textfield * {
+    display: inline-block;
+} 
