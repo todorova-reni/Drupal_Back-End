@@ -1,0 +1,1 @@
+Custom theme with custom setting for width and template only for the standart seacrh  (above the input add "You can search from here")
