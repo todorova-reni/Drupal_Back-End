@@ -1,0 +1,6 @@
+name = Latest content module
+description = Module that shows latest content.
+core = 7.x
+package = Drupal Back-End
+
+configure = admin/config/content/latest-content-config
