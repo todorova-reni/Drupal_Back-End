@@ -1,0 +1,4 @@
+name = Students
+description = Custom module for management of students.
+core = 7.x
+package = Drupal Back-End

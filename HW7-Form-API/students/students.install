@@ -1,0 +1,54 @@
+<?php
+/* 
+ *@file
+ * Install, update and uninstall functions for the Students module
+ */
+
+/*
+ * Implements hook_schema()
+ */
+
+function students_schema(){
+  $schema['students'] = array(
+    'description' => t('Stores student information'),
+    'fields' => array(
+      'sid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'description' => t('Primary key: Unique student ID.'),
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => t('Student`s name.'),
+      ),
+      'gender' => array(
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => t('Student`s gender.'),
+      ),
+      'faculty_number' => array(
+        'type' => 'varchar',
+        'length' =>8,
+        'not null' => TRUE,
+        'description' =>t('Student`s faculty number.'),
+      ),
+    ),
+    'primary key' => array('sid'),
+    'indexes' => array(
+      'name' => array('name'),
+      'gender' => array('gender'),
+      'faculty_number' => array('faculty_number'),
+    ),
+    'unique keys' => array(
+      'faculty_number' => array('faculty_number'),
+    ),
+  );
+  return $schema;
+}
+

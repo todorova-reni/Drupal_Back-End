@@ -1,0 +1,72 @@
+<?php
+
+/*
+ * Implement hook_menu()
+ */
+function students_menu(){
+  $items = array();
+  $items['students'] = array(
+    'title' => t('Students'),
+    'description' => 'Show table of all students.',
+    'page callback' => array('list_students'),
+    'access arguments' => array('access student content'),
+    'file' => 'students.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+  
+  $items['add-students'] = array(
+    'title' => t('Add Students'),  
+    'description' => 'Show form for adding or editing students.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('student_add_form'),
+    'access arguments' => array('edit student content'),
+    'file' => 'students.admin.inc',
+    'type' => MENU_CALLBACK,
+  );
+  
+  $items['edit/%'] = array(
+    'title' => t('Edit students'),
+    'page callback' =>'edit_student',
+    'page arguments' =>array(1),
+    'access arguments' => 'edit student content',
+    'file' => 'students.admin.inc',
+  );
+  
+    $items['delete/%'] = array(
+    'title' => t('Delete students'),
+    'page callback' =>'delete_student',
+    'page arguments' =>array(1),
+    'access arguments' => 'delete student content',
+      'file' => 'students.admin.inc'
+  );
+  return $items;
+}
+
+/*
+ * Implements hook_permission()
+ * Makes form accesible only for users with permission "administer latest content config"
+ */
+function students_permission() {
+  return array(
+    'access student content' => array(
+      'title' => t('Access student content'),
+      'description' => t('Perform administration tasks for accessing content of my Student module.'),
+    ),
+     'edit student content' => array(
+      'title' => t('Edit student content'),
+      'description' => t('Perform administration tasks for editing content of my Student module.'),
+    ),
+     'delete student content' => array(
+      'title' => t('Delete student content'),
+      'description' => t('Perform administration tasks for deleting content of my Student module.'),
+    ),
+  );
+}
+
+
+
+
+
+
+
+
